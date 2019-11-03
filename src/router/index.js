@@ -15,7 +15,7 @@ export default new Router({
         {
           path:'index',
           name:'首页',
-          components:()=>import('/')
+          components:()=>import('@/page/index/index')
         }
       ]
     },
