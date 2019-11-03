@@ -5,9 +5,14 @@
 
       <footer>
         <ul v-on:click="changeTab($event)">
-          <li v-for="index in list" :key="index.name" @click="changeTab()">
-              <img :src="index.src" alt="">
-            {{index.name}}
+          <li 
+            v-for="(item,index) in list" 
+            :key="index" 
+            v-bind:class='{activ:ifture==index}'
+            @click="ifture=index">
+            <img v-if="ifture==index" :src="item.arc" alt="">
+            <img v-else :src="item.src" alt="">
+            {{item.name}}
           </li>
         </ul>
       </footer>
@@ -20,11 +25,12 @@ export default {
   data() {
     return {
       list:[
-        {name:'首页',src:'/static/img/index.png',url:''},
-        {name:'快速找房',src:'/static/img/find_home.png',url:''},
-        {name:'房屋委托',src:'/static/img/entrust.png',url:''},
-        {name:'我的',src:'/static/img/user.png',url:''}
+        {name:'首页',src:'/static/img/index.png',arc:'/static/img/index_ac.png',url:''},
+        {name:'快速找房',src:'/static/img/find_home.png',arc:'/static/img/find_home_ac.png',url:''},
+        {name:'房屋委托',src:'/static/img/entrust.png',arc:'/static/img/entrust_ac.png',url:''},
+        {name:'我的',src:'/static/img/user.png',arc:'/static/img/user_ac.png',url:''}
       ],
+      ifture:0
     };
   },
   methods:{
@@ -35,6 +41,9 @@ export default {
 };
 </script>
 <style scoped="" >
+main{
+  border:1px solid blue;
+}
 footer ul {
   margin: 0;
   border: 1px solid red;
@@ -42,9 +51,14 @@ footer ul {
   display: flex;
   justify-content: space-between;
   padding:0;
+  position:fixed;
+  bottom:0;width: 100%;
 
 }
 footer ul li{
   width: 25%;
+}
+footer ul li.activ{
+  color:#1296db;
 }
 </style>
