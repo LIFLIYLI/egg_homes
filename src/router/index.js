@@ -5,7 +5,7 @@ import  Tabbar from '@/page/tabbar'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -13,9 +13,9 @@ export default new Router({
       component: Tabbar,
       children:[
         {
-          path:'index',
+          path:'',
           name:'首页',
-          components:()=>import('@/page/index/index')
+          component:()=>import('@/page/index/index')
         }
       ]
     },

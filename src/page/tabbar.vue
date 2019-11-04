@@ -53,6 +53,7 @@ footer ul {
   padding:0;
   position:fixed;
   bottom:0;width: 100%;
+  background:white;
 
 }
 footer ul li{
