@@ -42,7 +42,7 @@ export default {
 </script>
 <style scoped="" >
 main{
-  border:1px solid blue;
+  border:1px solid black;
 }
 footer ul {
   margin: 0;
