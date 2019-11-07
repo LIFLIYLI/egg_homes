@@ -1,23 +1,22 @@
 <template>
   <div class="swiper">
-    <ul :style="containerStyle">
-      <li>
-        <img :src="sliders[sliders.length - 1].img" alt />
-      </li>
-      <li v-for="(item,index) in sliders" :key="index">
+    <ul>
+      <li
+        v-for="(item,index) in sliders"
+        :key="index"
+        :class="{'current':index==num,'leave_ac':index==leave,'come_ac':index==come,'Zindex':index==come && ZindexN}"
+       v-bind:style="calculateTime"
+      >
         <img :src="item.img" alt />
-      </li>
-      <li>
-        <img :src="sliders[0].img" alt />
       </li>
     </ul>
     <div>
-      <button @click="move(1)">上</button>
-      <button @click="move(-1)">下</button>
+      <button @click="move(-1)">上</button>
+      <button @click="move(1)">下</button>
     </div>
-    <ul>
+    <!--<ul>
       <li v-for="(item,index) in sliders" :key="index" class="small" :class="{active:num===index}"></li>
-    </ul>
+    </ul>-->
   </div>
 </template>
 
@@ -50,28 +49,49 @@ export default {
         }
       ],
       num: 0,
-      distance: -10,
-      width:10,
+      ZindexN: false,
+      time: 2000,
+      active:true
     };
   },
   create() {},
-  mounted() {},
+  mounted() {
+     // this.autoPlay()
+  },
   computed: {
-    containerStyle() {
-      //这里用了计算属性，用transform来移动整个图片列表
-      return {
-        transform: `translate3d(${this.distance}rem, 0, 0)`
-      };
+    //这里用了计算属性，用于计算当前画面的左右两边因该是那一张，返回给适合标签激活对应的class
+    leave() {
+      return this.num == 0 ? this.sliders.length - 1 : this.num - 1;
+    },
+    come() {
+      return this.num == this.sliders.length - 1 ? 0 : this.num + 1;
+    },
+    //动态计算轮播动画时间
+    calculateTime(){
+        return {transition:`transform ${this.time/1000}s`}
     }
   },
   methods: {
-    move(direction) {
-      this.distance += this.width * direction;
-      if (this.distance < this.sliders.length*this.width*(-1)) this.distance = this.width*(-1)
-      if (this.distance > this.width*(-1)) this.distance = this.sliders.length*this.width*(-1)
-      this.num-=direction
-      if(this.num<0)this.num=this.sliders.length-1
-      if(this.num>=this.sliders.length)this.num=0
+    move: function(x) {
+        if(!this.active){
+            return
+        }
+        this.active=false
+      this.num += x;
+      //因为向左滑动时候，图片的图层问题出现覆盖的现象，所以判断滑动方向添加class变更图层级别
+      this.ZindexN = x < 0 ? true : false;
+      //阻止计数的溢出
+      if (this.num < 0) this.num = this.sliders.length - 1;
+      if (this.num == this.sliders.length) this.num = 0;
+      setTimeout(()=>{
+          this.active=true
+      },this.time)
+    },
+    autoPlay:function(){
+        setInterval(()=>{
+            this.num++
+            if(this.num==this.sliders.length)this.num=0
+        },this.time)
     }
   }
 };
@@ -79,33 +99,42 @@ export default {
 
 <style scoped>
 .swiper {
-  width: 10rem;
   border: 1px solid red;
-  padding: 1rem 0;
-  margin: 0 auto;
-  overflow: hidden;
 }
 ul {
   border: 1px solid blue;
   list-style: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  width: 100%;
-  transition:all 2s;
+  margin: 0 auto;
+  position: relative;
+  width: 10rem;
+  height: 4rem;
+  overflow: hidden;
 }
 
-ul li.small {
-  border:1px solid red;
-  width:10px;
-  height:10px;
-  /* transition: transform 0.5s; */
+ul li {
+  border: 1px solid red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
 }
-ul li.small.active {
-  background:blue
+ul li.come_ac {
+  transform: translateX(100%);
+}
+ul li.Zindex {
+  z-index: 3;
+}
+ul li.leave_ac {
+  transform: translateX(-100%);
+  z-index: 2;
+}
+ul li.current {
+  z-index: 4;
 }
 ul li img {
   width: 10rem;
-  height: 100%;
+  height: 4rem;
+  vertical-align: bottom;
 }
 </style>
