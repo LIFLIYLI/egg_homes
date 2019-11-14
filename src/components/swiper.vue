@@ -1,97 +1,116 @@
 <template>
   <div class="swiper">
-    <ul>
+    <ul @mouseover="createImg($event)" @mouseout="cleartImg($event)" class="banner">
       <li
-        v-for="(item,index) in sliders"
+        v-for="(item,index) in bannerList"
         :key="index"
         :class="{'current':index==num,'leave_ac':index==leave,'come_ac':index==come,'Zindex':index==come && ZindexN}"
-       v-bind:style="calculateTime"
+        v-bind:style="calculateTime"
       >
         <img :src="item.img" alt />
       </li>
     </ul>
-    <div>
-      <button @click="move(-1)">上</button>
-      <button @click="move(1)">下</button>
+    <div class="change_button" v-if='ifButton'>
+        <div class="previous" @click="move(-1)"></div>
+        <div class="next" @click="move(1)"></div>
     </div>
-    <!--<ul>
-      <li v-for="(item,index) in sliders" :key="index" class="small" :class="{active:num===index}"></li>
-    </ul>-->
+    <ul class="other_ul" v-if='ifInk'>
+      <li v-for="(item,index) in bannerList" 
+      :key="index" 
+      :class="{circle:index==num}"
+      @click="jumpImg(index)"></li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   components: {},
-  props: {},
+  //props:['ifButton','ifInk'],
+  props:{
+    ifButton:{
+      type:String,
+      
+    },
+    ifInk:{
+      type:Boolean,
+    },
+    autotime:{
+      type:Number
+    },
+    bannerList:{
+      type:Array
+    }
+  },
   data() {
     return {
-      sliders: [
-        {
-          img:
-            "http://img.hb.aicdn.com/adbde61e4343dedd21e97ea7f22666825a8db7d077ffe-qn8Pjn_fw658"
-        },
-        {
-          img:
-            "http://img.hb.aicdn.com/adeed7d28df6e776c2fa6032579c697381d1a82b7fe00-fwRqgn_fw658"
-        },
-        {
-          img:
-            "http://img.hb.aicdn.com/ab7f48509b3c0353017d9a85ef1d12400c9b2724540d4-p3zouo_fw658"
-        },
-        {
-          img:
-            "http://img.hb.aicdn.com/60f788fc2a846192f224b9e6d4904b30e54926211d3d67-ACFJ9G_fw658"
-        },
-        {
-          img:
-            "http://img.hb.aicdn.com/22ded455284aab361b8d2056e82f74a891a019704296a-PSraEB_fw658"
-        }
-      ],
+
       num: 0,
       ZindexN: false,
-      time: 2000,
-      active:true
+      time: 500,
+      active: true,
+      playTime: 4000,
+      t: null
     };
   },
-  create() {},
+  created() {
+ 
+  },
   mounted() {
-     // this.autoPlay()
+    this.playTime=this.autotime*1000
+    this.autoPlay();
   },
   computed: {
     //这里用了计算属性，用于计算当前画面的左右两边因该是那一张，返回给适合标签激活对应的class
     leave() {
-      return this.num == 0 ? this.sliders.length - 1 : this.num - 1;
+      return this.num == 0 ? this.bannerList.length - 1 : this.num - 1;
     },
     come() {
-      return this.num == this.sliders.length - 1 ? 0 : this.num + 1;
+      return this.num == this.bannerList.length - 1 ? 0 : this.num + 1;
     },
     //动态计算轮播动画时间
-    calculateTime(){
-        return {transition:`transform ${this.time/1000}s`}
+    calculateTime() {
+      return { transition: `transform ${this.time / 1000}s` };
     }
+    
+
   },
   methods: {
     move: function(x) {
-        if(!this.active){
-            return
-        }
-        this.active=false
+      if (!this.active) {
+        return;
+      }
+      this.active = false;
       this.num += x;
       //因为向左滑动时候，图片的图层问题出现覆盖的现象，所以判断滑动方向添加class变更图层级别
       this.ZindexN = x < 0 ? true : false;
       //阻止计数的溢出
-      if (this.num < 0) this.num = this.sliders.length - 1;
-      if (this.num == this.sliders.length) this.num = 0;
-      setTimeout(()=>{
-          this.active=true
-      },this.time)
+      if (this.num < 0) this.num = this.bannerList.length - 1;
+      if (this.num == this.bannerList.length) this.num = 0;
+      setTimeout(() => {
+        this.active = true;
+      }, this.time);
     },
-    autoPlay:function(){
-        setInterval(()=>{
-            this.num++
-            if(this.num==this.sliders.length)this.num=0
-        },this.time)
+    //自动播放
+    autoPlay: function() {
+      this.t = setInterval(() => {
+        this.num++;
+        if (this.num == this.bannerList.length) this.num = 0;
+      }, this.playTime);
+    },
+    //鼠标浮进
+    createImg: function() {
+      console.log("jin");
+      clearInterval(this.t);
+    },
+    //鼠标浮出
+    cleartImg: function() {
+      console.log("chu");
+      this.autoPlay();
+    },
+    //小点点击切换
+    jumpImg:function(x){
+      this.num=x
     }
   }
 };
@@ -99,42 +118,112 @@ export default {
 
 <style scoped>
 .swiper {
-  border: 1px solid red;
+  position: relative;
+  width: 100%;
+  height: 8rem;
 }
 ul {
-  border: 1px solid blue;
   list-style: none;
   padding: 0;
+}
+ul.banner {
   margin: 0 auto;
   position: relative;
-  width: 10rem;
-  height: 4rem;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
-ul li {
-  border: 1px solid red;
+ul.banner li {
   position: absolute;
   top: 0;
   left: 0;
-  
+  display: none;
 }
-ul li.come_ac {
+ul.banner li.come_ac {
+  display: block;
   transform: translateX(100%);
 }
-ul li.Zindex {
+ul.banner li.Zindex {
   z-index: 3;
 }
-ul li.leave_ac {
+ul.banner li.leave_ac {
+  display: block;
   transform: translateX(-100%);
   z-index: 2;
 }
-ul li.current {
+ul.banner li.current {
+  display: block;
   z-index: 4;
 }
-ul li img {
-  width: 10rem;
-  height: 4rem;
+ul.banner li img {
+  width: 100%;
+  height: 100%;
   vertical-align: bottom;
+}
+.change_button {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  left: 0;
+  z-index: 5;
+}
+.change_button>div{
+  border-radius:1px;
+   height:31px;
+   width:16px;
+   background:rgb(0,0,0,0.1);
+  position: relative;
+ 
+}
+
+.change_button .previous::after {
+  width:10px;
+  height:10px;
+  border:2px solid rgb(0,0,0,0.3);
+  transform: rotate(-45deg);
+  border-right: transparent;
+  border-bottom: transparent;
+  position: absolute;
+  top:9px;
+  left:5px;
+  content:'';
+  display: block;
+}
+.change_button .next::after {
+  width:10px;
+  height:10px;
+   border:2px solid rgb(0,0,0,0.3);
+  transform: rotate(135deg);
+  border-right: transparent;
+  border-bottom: transparent;
+  position: absolute;
+  top:9px;
+  right:5px;
+  content:'';
+  display: block;
+}
+ul.other_ul {
+  margin: 0;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+}
+ul.other_ul li {
+  width: 10px;
+  height: 4px;
+  background: rgb(0,0,0,0.2);
+  margin:0 5px;
+}
+ul.other_ul li.circle {
+  background: rgb(0,0,0,0.4);
 }
 </style>
