@@ -12,7 +12,10 @@
             @click="ifture=index">
             <img v-if="ifture==index" :src="item.arc" alt="">
             <img v-else :src="item.src" alt="">
-            {{item.name}}
+            <div>
+              {{item.name}}
+            </div>
+            
           </li>
         </ul>
       </footer>
@@ -58,6 +61,12 @@ footer ul {
 }
 footer ul li{
   width: 25%;
+  text-align: center;
+  font-size:0.8rem;
+}
+footer ul li img{
+  width: 2.2rem;
+  height:2.2rem;
 }
 footer ul li.activ{
   color:#1296db;

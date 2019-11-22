@@ -1,10 +1,17 @@
 <template>
-  <div class="swiper">
-    <ul @mouseover="createImg($event)" @mouseout="cleartImg($event)" class="banner">
+  <div class="swiper" @mouseenter="createImg($event)" @mouseleave="cleartImg($event)">
+    <ul  class="banner">
       <li
         v-for="(item,index) in bannerList"
         :key="index"
-        :class="{'current':index==num,'leave_ac':index==leave,'come_ac':index==come,'Zindex':index==come && ZindexN}"
+        :class="{
+          'current':index==num,
+          'leave_ac':index==leave,
+          'come_ac':index==come,
+          'Zindex':index==come && ZindexN,
+          'right':index==hoverRight,
+          'left':index==hoverLeft
+          }"
         v-bind:style="calculateTime"
       >
         <img :src="item.img" alt />
@@ -18,7 +25,9 @@
       <li v-for="(item,index) in bannerList" 
       :key="index" 
       :class="{circle:index==num}"
-      @click="jumpImg(index)"></li>
+      @click="jumpImg(index)"
+      @mouseenter="hoverAc(index)"
+      @mouseleave="hoverOut(index)"></li>
     </ul>
   </div>
 </template>
@@ -50,7 +59,9 @@ export default {
       time: 500,
       active: true,
       playTime: 4000,
-      t: null
+      t: null,
+      hoverRight:null,
+      hoverLeft:null,
     };
   },
   created() {
@@ -98,12 +109,12 @@ export default {
         if (this.num == this.bannerList.length) this.num = 0;
       }, this.playTime);
     },
-    //鼠标浮进
+    //鼠标浮进停自动
     createImg: function() {
       console.log("jin");
       clearInterval(this.t);
     },
-    //鼠标浮出
+    //鼠标浮出开自动播放
     cleartImg: function() {
       console.log("chu");
       this.autoPlay();
@@ -111,6 +122,22 @@ export default {
     //小点点击切换
     jumpImg:function(x){
       this.num=x
+      this.hoverLeft=null,
+      this.hoverRight=null
+    },
+    //鼠标浮进小圆点加css
+    hoverAc:function(num){
+      console.log('ke',num)
+      if(num>(this.num+1)){
+        this.hoverRight=num
+      }else if(num<(this.num-1)){
+        this.hoverLeft=num
+      }
+    },
+    //鼠标浮出小圆点
+    hoverOut:function(num){
+      this.hoverLeft=null,
+      this.hoverRight=null
     }
   }
 };
@@ -144,6 +171,10 @@ ul.banner li.come_ac {
   display: block;
   transform: translateX(100%);
 }
+ul.banner li.right{
+   display: block;
+  transform: translateX(100%);
+}
 ul.banner li.Zindex {
   z-index: 3;
 }
@@ -152,12 +183,16 @@ ul.banner li.leave_ac {
   transform: translateX(-100%);
   z-index: 2;
 }
+ul.banner li.left{
+  display: block;
+  transform: translateX(-100%);
+}
 ul.banner li.current {
   display: block;
   z-index: 4;
 }
 ul.banner li img {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   vertical-align: bottom;
 }
