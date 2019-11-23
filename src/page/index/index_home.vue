@@ -52,35 +52,55 @@
         <div class="title">
             <h4>租房品质</h4>
             <div>
-                <span>1</span>/3
+                <span>{{swiperHomeNum+1}}</span>/3
             </div>
         </div>
         <ul class="swiper_home">
-            <li>
+                     <li class="left_view">
                 <div class="left">
-                    <img src="../../assets/bed_2.jpg" alt="">
+                    <img :src="leftViewFn.left_src" alt="">
+                    <div class="swiper_home_tag">
+                      <p>{{leftViewFn.title}}</p>
+                      <span>{{leftViewFn.name}}</span>
+                    </div>
                 </div>
                 <div class="right">
-                    <img src="../../assets/bed_1.jpg" alt="">
-                    <img src="../../assets/bed_2.jpg" alt="">
+                    <img :src="leftViewFn.top_src" alt="">
+                    <img :src="leftViewFn.bottom_src" alt="">
                 </div>
             </li>
-                        <li>
+
+            <li v-for="(item,index) in swiperHome" 
+            class="active_view"
+            :class="{active:index==swiperHomeNum,next:index==leave,ago:index==oldimg}"
+            @touchstart="touchStart"
+            @touchend="touchEnd"
+            @touchmove="touchMove"
+            :key="index">
                 <div class="left">
-                    <img src="../../assets/bed_2.jpg" alt="">
+                    <img :src="item.left_src" alt="">
+                    <div class="swiper_home_tag">
+                      <p>{{item.title}}</p>
+                      <span>{{item.name}}</span>
+                    </div>
                 </div>
                 <div class="right">
-                    <img src="../../assets/bed_1.jpg" alt="">
-                    <img src="../../assets/bed_2.jpg" alt="">
+                    <img :src="item.top_src" alt="">
+                    <img :src="item.bottom_src" alt="">
                 </div>
             </li>
-                        <li>
+
+              <li class="right_view">
                 <div class="left">
-                    <img src="../../assets/bed_2.jpg" alt="">
+                    <img :src="rightViewFn.left_src" alt="">
+                    <div class="swiper_home_tag">
+                      <p>{{rightViewFn.title}}</p>
+                      <span>{{rightViewFn.name}}</span>
+                    </div>
                 </div>
                 <div class="right">
-                    <img src="../../assets/bed_1.jpg" alt="">
-                    <img src="../../assets/bed_2.jpg" alt="">
+                    <img :src="rightViewFn.top_src" alt="">
+                    <img :src="rightViewFn.bottom_src" alt="">
                 </div>
             </li>
         </ul>
@@ -91,12 +111,54 @@
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      swiperHome:[
+        {left_src:'/static/img/bed_1.jpg',title:'整租',name:'逸者自居 卓尔不群',top_src:'/static/img/bed_2.jpg',bottom_src:'/static/img/bed_1.jpg'},
+        {left_src:'/static/img/bed_1.jpg',title:'月租',name:'简单潇洒的租住体验',top_src:'/static/img/bed_2.jpg',bottom_src:'/static/img/bed_1.jpg'},
+        {left_src:'/static/img/bed_1.jpg',title:'合租',name:'共享美好生活',top_src:'/static/img/bed_2.jpg',bottom_src:'/static/img/bed_1.jpg'}
+      ],
+      swiperHomeNum:0,
+      startX:null,
+      endX:null,
+    
+    };
   },
   created() {},
   mounted() {},
-  computed: {},
-  methods: {}
+  computed: {
+    leave(){
+      return  this.swiperHomeNum+1 < this.swiperHome.length?this.swiperHomeNum+1:0
+    },
+    oldimg(){
+      return  this.swiperHomeNum-1 >=0?this.swiperHomeNum-1:this.swiperHome.length-1
+    },
+    rightViewFn(){
+      let right=this.swiperHomeNum+1 < this.swiperHome.length?this.swiperHomeNum+1:0
+      return this.swiperHome[right]
+    },
+    leftViewFn(){
+      let left=this.swiperHomeNum-1 >=0?this.swiperHomeNum-1:this.swiperHome.length-1
+      return this.swiperHome[left]
+    }
+  },
+  methods: {
+    touchStart:function(e){
+        this.startX = e.changedTouches[0].pageX; // 获取触摸时的原点
+    },
+    //滑动方向
+    touchEnd:function(e){
+      console.log( e.changedTouches[0].pageX)
+      this.endX=e.changedTouches[0].pageX
+      if(this.endX>this.startX){
+        this.swiperHomeNum=this.swiperHomeNum-1 <0?this.swiperHome.length-1:this.swiperHomeNum-1
+      }else if(this.endX<this.startX){
+        this.swiperHomeNum=this.swiperHomeNum+1 <this.swiperHome.length?this.swiperHomeNum+1:0
+      }
+    },
+    touchMove:function(e){
+      console.log( e.changedTouches[0].pageX)
+    }
+  }
 };
 </script>
 <style scoped>
@@ -206,22 +268,59 @@ ul.offer_home li .tag span{
     font-size:1rem
 }
 .swipers_box .swiper_home{
-    display: flex;
+    position: relative;
+    height:8rem;
+    border:1px solid red;
     overflow: hidden;
 }
 .swipers_box .swiper_home li{
+  position:absolute;
+  top:0;
+  left:7%;
     display: flex;
     justify-content: space-between; 
-   
-    margin:0 .4rem;
+   padding:0 .4rem;
+    width:80vw;
     border:1px solid yellow;
+    transition: transform 4s;
 }
+.swipers_box .swiper_home li.active_view{
+
+}
+.swipers_box .swiper_home li.left_view{
+transform: translateX(-100%);
+}
+.swipers_box .swiper_home li.right_view{
+transform: translateX(100%);
+}
+.swipers_box .swiper_home li.ago{
+transform: translateX(-100%);
+z-index: 1
+}
+.swipers_box .swiper_home li.active{
+transform: translateX(0);
+z-index: 2
+}
+.swipers_box .swiper_home li.next{
+  transform: translateX(100%);
+  z-index: 1
+}
+
 .swipers_box .swiper_home li img{
     vertical-align: bottom;
 }
 .swiper_home li .left{
     margin-right:.2rem;
-   
+   position:relative;
+}
+.swiper_home_tag{
+  position: absolute;
+  bottom:0.4rem;
+  left:.4rem;
+  color:white;
+}
+.swiper_home_tag span{
+  font-size:.6rem
 }
 .swiper_home li .left img{
     width:50vw;

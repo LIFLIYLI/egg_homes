@@ -2,7 +2,7 @@
   <div class="contents_boxs">
     <seach-message></seach-message>
     <!-- 内容区 -->
-    <div>
+    <div class="main_margin">
       <!-- 下面有两种方式的传值，不绑定那么只能传string,绑定后可以传值的本身js值 -->
       <swiper-img ifButton="true" :ifInk="true" :bannerList="sliders" :autotime="4"></swiper-img>
 
@@ -117,6 +117,9 @@ export default {
 <style scoped>
 .contents_boxs{
   padding-bottom:5rem;
+}
+.main_margin{
+  margin-top:3.5rem
 }
 .title_list {
   display: flex;

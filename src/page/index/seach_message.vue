@@ -17,10 +17,18 @@ export default {
 
 <style>
 .seach_box{
+    box-sizing: border-box;
+    background: white;
+    z-index: 10;
+    position:fixed;
+    width:100%;
+    top:0;
+    left: 0;
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:0.6rem 1rem;
+    padding:0 1rem;
+    height:3.5rem;
 }
 .input{
     border:1px solid #e0e0e0;
