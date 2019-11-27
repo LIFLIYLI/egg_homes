@@ -50,8 +50,21 @@
       </div>
  
     </div>
-         <!-- 特价房源板块 -->
+         <!-- 特价房源板块和优质房源 -->
     <home-view></home-view>
+    <!-- 按钮和特点提示区 -->
+    <div class="person_string">
+      <ul>
+        <li v-for="(item,index) in personList" :key="index">
+          <div><img :src="item.url" alt=""></div>
+          <p>{{item.name}}</p>
+          <span>{{item.title}}</span>
+        </li>
+      </ul>
+      <div class="more_button">更多品质房源</div>
+    </div>
+    <!-- 生活故事板块 -->
+    <live-thing></live-thing>
   </div>
 </template>
 
@@ -59,11 +72,13 @@
 import seachMessage from "./seach_message";
 import swiperImg from "../../components/swiper";
 import homeView from "./index_home"
+import liveThing from '@/page/index/live_thing'
 export default {
   components: {
     seachMessage,
     swiperImg,
-    homeView
+    homeView,
+    liveThing
   },
   data() {
     return {
@@ -104,7 +119,14 @@ export default {
         one: { title: "万房5折", name: "蛋壳半价月", src: "" },
         two: { title: "独卫大卧房", name: "享受空间自主权", src: "" },
         third: { title: "热租商圈精选", name: "宝安西乡", src: "" }
-      }
+      },
+      personList:[
+        {name:'极速wifi',title:'网络精彩不断线',url:'/static/img/Routerwi-fi.png'},
+        {name:'优质保洁',title:'持续保持卫生',url:'/static/img/clean.png'},
+        {name:'专业维修',title:'维修极速上门',url:'/static/img/weixiubanshou.png'},
+        {name:'私人管家',title:'24小时贴心服务',url:'/static/img/people.png'},
+
+      ]
     };
   },
   created() {}, //创建结束
@@ -214,5 +236,49 @@ export default {
 .third_img  p{
  font-size:0.6rem;
  margin:0;
+}
+/* 提示字按钮板块 */
+.person_string{
+
+  margin:0 1rem ;
+}
+.person_string ul{
+  margin:0;
+  padding:0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.person_string ul li div{
+  border:2px solid #e0e0e0;
+  display: inline-block;
+  padding:0.5rem;
+  border-radius: 50%;
+}
+.person_string ul li div img{
+  width:1.5rem;
+  height:1.5rem;
+  vertical-align: bottom;
+}
+.person_string ul li p{
+  margin:0.5rem 0 0.1rem 0;
+  font-size:.9rem;
+  color:#8a8787;
+}
+.person_string ul li span{
+  font-size:0.6rem;
+ color:#999898;
+  display: block;
+}
+.person_string .more_button{
+  width:80%;
+  background:#f0f0f0;
+  height:2.5rem;
+  font-size:1rem;
+  line-height: 2.5rem;
+  border-radius:2.5rem;
+  text-align: center;
+  margin:2rem auto;
 }
 </style>

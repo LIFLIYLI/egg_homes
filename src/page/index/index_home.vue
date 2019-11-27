@@ -72,7 +72,7 @@
 
             <li v-for="(item,index) in swiperHome" 
             class="active_view"
-            :class="{active:index==swiperHomeNum,next:index==leave,ago:index==oldimg}"
+            :class="{active:index==swiperHomeNum,next:index==leave,ago:index==oldimg,zIndex:index==oldimg && faceLeft==true}"
             @touchstart="touchStart"
             @touchend="touchEnd"
             @touchmove="touchMove"
@@ -120,7 +120,7 @@ export default {
       swiperHomeNum:0,
       startX:null,
       endX:null,
-    
+      faceLeft:false,
     };
   },
   created() {},
@@ -151,8 +151,10 @@ export default {
       this.endX=e.changedTouches[0].pageX
       if(this.endX>this.startX){
         this.swiperHomeNum=this.swiperHomeNum-1 <0?this.swiperHome.length-1:this.swiperHomeNum-1
+        this.faceLeft=false
       }else if(this.endX<this.startX){
         this.swiperHomeNum=this.swiperHomeNum+1 <this.swiperHome.length?this.swiperHomeNum+1:0
+        this.faceLeft=true
       }
     },
     touchMove:function(e){
@@ -270,7 +272,6 @@ ul.offer_home li .tag span{
 .swipers_box .swiper_home{
     position: relative;
     height:8rem;
-    border:1px solid red;
     overflow: hidden;
 }
 .swipers_box .swiper_home li{
@@ -281,8 +282,8 @@ ul.offer_home li .tag span{
     justify-content: space-between; 
    padding:0 .4rem;
     width:80vw;
-    border:1px solid yellow;
-    transition: transform 4s;
+    transition: transform 2s;
+    background:white;
 }
 .swipers_box .swiper_home li.active_view{
 
@@ -295,15 +296,18 @@ transform: translateX(100%);
 }
 .swipers_box .swiper_home li.ago{
 transform: translateX(-100%);
-z-index: 1
+
+}
+.swipers_box .swiper_home li.ago.zIndex{
+  z-index: 3
 }
 .swipers_box .swiper_home li.active{
 transform: translateX(0);
-z-index: 2
+z-index: 6
 }
 .swipers_box .swiper_home li.next{
   transform: translateX(100%);
-  z-index: 1
+  z-index: 2
 }
 
 .swipers_box .swiper_home li img{
