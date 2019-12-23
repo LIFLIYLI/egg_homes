@@ -55,20 +55,18 @@ ul{
     margin:0;
     padding:0;
 }
-    .guest{
-        border:1px solid red;
+    .guest>p{
+        margin:1rem;
     }
     .guest ul{
         /* display: -webkit-box; */
         overflow-y: hidden;
         display: flex;
-        
     }
     .guest li{
         width:12rem;
-    
-        height:8rem;
-        
+        margin-left: 0.4rem;
+        height:10rem;
         position: relative;
     }
     .guest div{
@@ -79,7 +77,7 @@ ul{
     }
     .guest img{
         width:12rem;
-        height:8rem;
+        height:10rem;
         border-radius:8px;
         vertical-align: bottom;
     }
@@ -95,16 +93,36 @@ ul{
     display: block;
     background:rgb(0,0,0,0.4);
     color:white;
-    padding:0.4rem 2rem 0.8rem 0.4rem;
+    padding:0 2rem 0 0.4rem;
     font-size:0.6rem;
+    height:2.4rem;
 }
     /*  */
+    .live>p{
+        margin:1rem;
+    }
+    .live ul{
+        display: flex;
+        justify-content: flex-start;
+        overflow-y: hidden;
+        margin-bottom:2rem;
+
+    }
     .live li{
+        flex-shrink: 0;
         width:45vw;
-        height:8rem;
+        margin-left:0.4rem;
+    }
+    .live li:last-child{
+        padding-right: 0.4rem
     }
     .live img{
         width:100%;
-        height:100%;
+        height:8rem;
+        border-radius:6px;
+    }
+    .live li p{
+        margin:0;
+        font-size:0.8rem;
     }
 </style>
