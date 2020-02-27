@@ -13,9 +13,14 @@ export default new Router({
       component: Tabbar,
       children:[
         {
-          path:'',
-          name:'首页',
+          path:'index',
+          name:'index',
           component:()=>import('@/page/index/index')
+        },
+        {
+          path:'user',
+          name:'user',
+          component:()=>import('@/page/user/user')
         }
       ]
     },

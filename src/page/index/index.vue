@@ -89,7 +89,7 @@ export default {
       sliders: [
         {
           img:
-            "/static/img/affirm_icon.png"
+            "/static/img/bed_1.jpg"
         },
         {
           img:
@@ -97,7 +97,7 @@ export default {
         },
         {
           img:
-            "/static/img/affirm_icon.png"
+            "/static/img/bed_2.jpg"
         },
         {
           img:
@@ -105,7 +105,7 @@ export default {
         },
         {
           img:
-            "/static/img/affirm_icon.png"
+            "/static/img/bed_2.jpg"
         }
       ],
       titleList: [

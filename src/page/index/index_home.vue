@@ -147,7 +147,7 @@ export default {
     },
     //滑动方向
     touchEnd:function(e){
-      console.log( e.changedTouches[0].pageX)
+     // console.log( e.changedTouches[0].pageX)
       this.endX=e.changedTouches[0].pageX
       if(this.endX>this.startX){
         this.swiperHomeNum=this.swiperHomeNum-1 <0?this.swiperHome.length-1:this.swiperHomeNum-1

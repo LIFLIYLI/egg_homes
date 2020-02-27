@@ -107,11 +107,21 @@ export default {
   },
   computed: {},
   created() {},
-  mounted() {},
+  mounted() {
+    try{
+      throw new Error(5)
+      // setTimeout(function(){
+      //   throw new Error(5)
+      // },1000)
+    }catch(error){
+      console.log(error)
+    }
+  },
   methods: {
     navChange: function(e) {
       this.navNum = e;
-    }
+    },
+
   }
 };
 </script>
