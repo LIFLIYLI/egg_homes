@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Mint from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import store from '@/js/Vuex.js'
 
 Vue.use(Mint)
 
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

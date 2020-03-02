@@ -14,7 +14,7 @@
       </div>
       <!-- 租房类型 -->
       <div class="icon_list">
-        <div v-for="(index,item) in iconList" :key="item">
+        <div v-for="(index,item) in iconList" :key="item" @click="changeFindPage(item)">
           <img :src="index.src" alt />
           <p>{{index.name}}</p>
         </div>
@@ -114,10 +114,10 @@ export default {
         { name: "品质房屋/环境优美", src: "/static/img/zuanshi.png" }
       ],
       iconList: [
-        { name: "合租", src: "/static/img/icon-test-2.png" },
-        { name: "整租", src: "/static/img/-fangzi.png" },
+        { name: "合租", src: "/static/img/icon-test-2.png"},
+        { name: "整租", src: "/static/img/-fangzi.png"},
         { name: "月租", src: "/static/img/zufang.png" },
-        { name: "地图找房", src: "/static/img/fangzi.png" }
+        { name: "地图找房", src: "/static/img/fangzi.png"}
       ],
       third_img: {
         one: { title: "万房5折", name: "蛋壳半价月", src: "" },
@@ -135,7 +135,13 @@ export default {
   },
   created() {}, //创建结束
   mounted() {}, //渲染结束
-  methods: {}, //方法
+  methods: {
+    changeFindPage:function(num){
+      if(num!=3){
+        this.$router.push({path:'find'})
+      }
+    }
+  }, //方法
   computed: {} //计算属性
 };
 </script>

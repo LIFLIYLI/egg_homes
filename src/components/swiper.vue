@@ -111,12 +111,10 @@ export default {
     },
     //鼠标浮进停自动
     createImg: function() {
-      console.log("jin");
       clearInterval(this.t);
     },
     //鼠标浮出开自动播放
     cleartImg: function() {
-      console.log("chu");
       this.autoPlay();
     },
     //小点点击切换

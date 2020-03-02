@@ -2,20 +2,38 @@
   <div class="seach_box">
       <div class="citys">深圳</div>
       <div class="input">
-        <input type="text" placeholder="蜗牛壳半价月 万房5折">
+        <input type="text" placeholder="蜗牛壳半价月 万房5折"
+            v-on:click='changePageSeach'
+        >
         <img src="../../assets/seach.png" alt="">
       </div>
-      <div class="message"><img src="../../assets/message.png" alt=""></div>
+      <div class="message"><div class="get_mes">{{mesNum}}</div><img src="../../assets/message.png" alt=""></div>
   </div>
 </template>
 
 <script>
+//import store from '@/js/Vuex.js'
 export default {
-
+    components:{},
+    data(){
+        return {}
+    },
+    computed:{
+        mesNum(){
+            //return store.state.count
+            return this.$store.state.count
+        }
+    },
+    created(){},
+    methods:{
+        changePageSeach:function(){
+            this.$router.push({path:'seach'})
+        }
+    }
 }
 </script>
 
-<style>
+<style scoped>
 .seach_box{
     box-sizing: border-box;
     background: white;
@@ -69,7 +87,20 @@ export default {
 .message{
     width:1.5rem;
     height:1.5rem;
-
+    position: relative;
+}
+.message .get_mes{
+    position: absolute;
+    top:0;
+    right:-0.6rem;
+    width:1.2rem;
+    height:1.2rem;
+    border-radius:50%;
+    background: rgb(250, 59, 59);
+    font-size:0.4rem;
+    color:white;
+    text-align: center;
+    line-height: 1.2rem;
 }
 .message img{
     width:100%;
