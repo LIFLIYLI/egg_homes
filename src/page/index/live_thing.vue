@@ -1,23 +1,23 @@
 <template>
   <div>
       <div class="guest">
-          <p>租客故事</p>
+          <p>{{peopleName}}</p>
           <ul>
-              <li class="" v-for="(item,index) in guestList" :key="index">
-                  <img :src="item.src" alt="">
+              <li class="" v-for="(item,index) in egg_people_list" :key="index">
+                  <img :src="item.pic_big" alt="">
                   <div>
-                      <p>{{item.name}}</p>
+                      <p>{{item.author}}</p>
                       <span>{{item.title}}</span>
                   </div>
               </li>
           </ul>
       </div>
       <div class="live">
-          <p>蛋壳生活</p>
+          <p>{{liveName}}</p>
           <ul>
-              <li v-for="(item ,index) in liveList" :key="index">
-                  <img :src="item.src" alt="">
-                  <p>{{item.name}}</p>
+              <li v-for="(item ,index) in egg_live_list" :key="index">
+                  <img :src="item.pic_big" alt="">
+                  <p>{{item.author}}</p>
               </li>
           </ul>
       </div>
@@ -29,20 +29,26 @@ export default {
     components:{},
     data(){
         return{
-            guestList:[
-                {src:'/static/img/bed_1.jpg',name:'居家',title:'省心不分心 才是让我安心的选择'},
-                {src:'/static/img/bed_2.jpg',name:'经历',title:'我的京城居 不在抱怨大不易'},
-                {src:'/static/img/bed_1.jpg',name:'集中式',title:'这里会成为《爱情公寓》的样子'}
-            ],
-            liveList:[
-                {src:'/static/img/bed_1.jpg',name:'亚马逊海外购送福利'},
-                {src:'/static/img/bed_2.jpg',name:'蛋壳用户专享搬家礼'},
-                {src:'/static/img/bed_1.jpg',name:'演员de蛋生-上海站精彩回顾'}
-            ]
+            peopleName:'',
+            liveName:'',
+            egg_live_list:[],
+            egg_people_list:[]
         }
     },
     computed:{},
-    created(){},
+    created(){
+        this.$http.getLive().then(res=>{
+            console.log(res,'/////')
+            this.liveName=res.data.result[0].name
+            this.peopleName=res.data.result[2].name
+            this.egg_live_list=res.data.result[0].content.filter((x,y)=>{
+                return y<3
+            })
+            this.egg_people_list=res.data.result[2].content.filter((x,y)=>{
+                return y<3
+            })
+        })
+    },
     methods:{
 
     }

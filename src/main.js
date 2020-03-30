@@ -6,10 +6,14 @@ import router from './router'
 import Mint from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import store from '@/js/Vuex.js'
+import https from '@/http/config.js'
+import axios from 'axios'
 
 Vue.use(Mint)
 
 Vue.config.productionTip = false
+Vue.prototype.$http=https
+Vue.prototype.$axios=axios
 
 /* eslint-disable no-new */
 new Vue({
