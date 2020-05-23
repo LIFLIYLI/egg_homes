@@ -6,7 +6,7 @@
     <div class="border" v-on:click="reduceButton">vuex值延时减少</div>
     <div class="axios_list">
       <el-row>
-        <el-button type="primary" @click="getAxios">get请求按钮</el-button>
+        <el-button type="primary" @click="getAxios">GET请求按钮</el-button>
         <el-button type="success" @click="postAxios">post请求按钮</el-button>
       </el-row>
     </div>

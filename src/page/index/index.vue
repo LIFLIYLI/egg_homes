@@ -89,35 +89,35 @@ export default {
       sliders: [
         {
           img:
-            "/static/img/bed_1.jpg"
+            "../../../static/img/bed_1.jpg"
         },
         {
           img:
-            "/static/img/affirm_icon.png"
+            "../../../static/img/affirm_icon.png"
         },
         {
           img:
-            "/static/img/bed_2.jpg"
+            "../../../static/img/bed_2.jpg"
         },
         {
           img:
-            "/static/img/affirm_icon.png"
+            "../../../static/img/affirm_icon.png"
         },
         {
           img:
-            "/static/img/bed_2.jpg"
+            "../../../static/img/bed_2.jpg"
         }
       ],
       titleList: [
-        { name: "100%房源", src: "/static/img/affirm_icon.png" },
-        { name: "优质保洁/维修", src: "/static/img/icon.png" },
-        { name: "品质房屋/环境优美", src: "/static/img/zuanshi.png" }
+        { name: "100%房源", src: "../../../static/img/affirm_icon.png" },
+        { name: "优质保洁/维修", src: "../../../static/img/icon.png" },
+        { name: "品质房屋/环境优美", src: "../../../static/img/zuanshi.png" }
       ],
       iconList: [
-        { name: "合租", src: "/static/img/icon-test-2.png"},
-        { name: "整租", src: "/static/img/-fangzi.png"},
-        { name: "月租", src: "/static/img/zufang.png" },
-        { name: "地图找房", src: "/static/img/fangzi.png"}
+        { name: "合租", src: "../../../static/img/icon-test-2.png"},
+        { name: "整租", src: "../../../static/img/-fangzi.png"},
+        { name: "月租", src: "../../../static/img/zufang.png" },
+        { name: "地图找房", src: "../../../static/img/fangzi.png"}
       ],
       third_img: {
         one: { title: "万房5折", name: "蛋壳半价月", src: "" },
@@ -125,10 +125,10 @@ export default {
         third: { title: "热租商圈精选", name: "宝安西乡", src: "" }
       },
       personList:[
-        {name:'极速wifi',title:'网络精彩不断线',url:'/static/img/Routerwi-fi.png'},
-        {name:'优质保洁',title:'持续保持卫生',url:'/static/img/clean.png'},
-        {name:'专业维修',title:'维修极速上门',url:'/static/img/weixiubanshou.png'},
-        {name:'私人管家',title:'24小时贴心服务',url:'/static/img/people.png'},
+        {name:'极速wifi',title:'网络精彩不断线',url:'../../../static/img/Routerwi-fi.png'},
+        {name:'优质保洁',title:'持续保持卫生',url:'../../../static/img/clean.png'},
+        {name:'专业维修',title:'维修极速上门',url:'../../../static/img/weixiubanshou.png'},
+        {name:'私人管家',title:'24小时贴心服务',url:'../../../static/img/people.png'},
 
       ]
     };

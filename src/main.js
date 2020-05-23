@@ -23,3 +23,10 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+//路由监听
+router.beforeEach((to, from, next) => {
+  //去那里，从哪里来，执行函数next()
+  console.log(to,from,next)
+  next()
+})

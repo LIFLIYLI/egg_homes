@@ -32,10 +32,10 @@ export default {
   data() {
     return {
       list:[
-        {name:'首页',path:'index',src:'/static/img/index.png',arc:'/static/img/index_ac.png',url:''},
-        {name:'快速找房',path:'find',src:'/static/img/find_home.png',arc:'/static/img/find_home_ac.png',url:''},
-        {name:'房屋委托',path:'homes',src:'/static/img/entrust.png',arc:'/static/img/entrust_ac.png',url:''},
-        {name:'我的',path:'user',src:'/static/img/user.png',arc:'/static/img/user_ac.png',url:''}
+        {name:'首页',path:'index',src:require('../assets/img/index.png'),arc:require('../assets/img/index_ac.png'),url:''},
+        {name:'快速找房',path:'find',src:require('../assets/img/find_home.png'),arc:require('../assets/img/find_home_ac.png'),url:''},
+        {name:'房屋委托',path:'homes',src:require('../assets/img/entrust.png'),arc:require('../assets/img/entrust_ac.png'),url:''},
+        {name:'我的',path:'user',src:require('../assets/img/user.png'),arc:require('../assets/img/user_ac.png'),url:''}
       ],
       ifture:0
     };

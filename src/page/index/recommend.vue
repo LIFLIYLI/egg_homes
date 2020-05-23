@@ -95,7 +95,7 @@ export default {
       list: [
         {
           money: "¥5550",
-          src: "/static/img/bed_1.jpg",
+          src: "../../../static/img/bed_1.jpg",
           title: "紫菱 神彩园 朝南-主卧",
           name: "合租",
           names: "3室1厅·9平方米·9/42层",

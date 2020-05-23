@@ -27,10 +27,10 @@ export default {
   components: {},
   data() {
     return {
-        list:[{picture:'/static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'},
-        {picture:'/static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'},
-        {picture:'/static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'},
-        {picture:'/static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'}
+        list:[{picture:'../../../static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'},
+        {picture:'../../../static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'},
+        {picture:'../../../static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'},
+        {picture:'../../../static/img/bed_1.jpg',attention:'今天有用户关注',title:'龙泽 朝南-主卧',introduce:'合租| 2室1厅 · 3/14层',distance:'距13号线龙泽站754米',prompt:['立减600元','独立卫生间','品质公寓'],money_one:'0',money_old:'3878'}
         ]
     };
   },

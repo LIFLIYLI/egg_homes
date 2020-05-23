@@ -34,16 +34,16 @@ export default {
   data() {
     return {
       toolList: [
-        { icon: "static/img/tool-1.png", able: "租房合同" },
-        { icon: "static/img/tool-2.png", able: "租约变更" },
-        { icon: "static/img/tool-3.png", able: "智能门锁" },
-        { icon: "static/img/tool_4.png", able: "在线报修" },
-        { icon: "static/img/tool-5.png", able: "我的管家" }
+        { icon: "../../static/img/tool-1.png", able: "租房合同" },
+        { icon: "../../static/img/tool-2.png", able: "租约变更" },
+        { icon: "../../static/img/tool-3.png", able: "智能门锁" },
+        { icon: "../../static/img/tool_4.png", able: "在线报修" },
+        { icon: "../../static/img/tool-5.png", able: "我的管家" }
       ],
       eggList: [
-        { icon: "static/img/tool-6.png", able: "租房合同" },
-        { icon: "static/img/tool-7.png", able: "租房账单" },
-        { icon: "static/img/tool-8.png", able: "品质搬家" }
+        { icon: "../../static/img/tool-6.png", able: "租房合同" },
+        { icon: "../../static/img/tool-7.png", able: "租房账单" },
+        { icon: "../../static/img/tool-8.png", able: "品质搬家" }
       ]
     };
   },

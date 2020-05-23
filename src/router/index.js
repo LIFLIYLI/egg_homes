@@ -7,6 +7,7 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
+  //mode: 'hash',
   routes: [
     {
       path: '/',
@@ -19,17 +20,17 @@ export default new Router({
           component:()=>import('@/page/index/index')
         },
         {
-          path:'user',
+          path:'/user',
           name:'user',
           component:()=>import('@/page/user/user')
         },
         {
-          path:'find',
+          path:'/find',
           name:'find',
           component:()=>import('@/page/find/find')
         },
         {
-          path:'homes',
+          path:'/homes',
           name:'homes',
           component:()=>import('@/page/homes/home')
         }

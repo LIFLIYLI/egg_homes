@@ -113,9 +113,9 @@ export default {
   data() {
     return {
       swiperHome:[
-        {left_src:'/static/img/bed_1.jpg',title:'整租',name:'逸者自居 卓尔不群',top_src:'/static/img/bed_2.jpg',bottom_src:'/static/img/bed_1.jpg'},
-        {left_src:'/static/img/bed_1.jpg',title:'月租',name:'简单潇洒的租住体验',top_src:'/static/img/bed_2.jpg',bottom_src:'/static/img/bed_1.jpg'},
-        {left_src:'/static/img/bed_1.jpg',title:'合租',name:'共享美好生活',top_src:'/static/img/bed_2.jpg',bottom_src:'/static/img/bed_1.jpg'}
+        {left_src:'../../../static/img/bed_1.jpg',title:'整租',name:'逸者自居 卓尔不群',top_src:'../../../static/img/bed_2.jpg',bottom_src:'../../../static/img/bed_1.jpg'},
+        {left_src:'../../../static/img/bed_1.jpg',title:'月租',name:'简单潇洒的租住体验',top_src:'../../../static/img/bed_2.jpg',bottom_src:'../../../static/img/bed_1.jpg'},
+        {left_src:'../../../static/img/bed_1.jpg',title:'合租',name:'共享美好生活',top_src:'../../../static/img/bed_2.jpg',bottom_src:'../../../static/img/bed_1.jpg'}
       ],
       swiperHomeNum:0,
       startX:null,
